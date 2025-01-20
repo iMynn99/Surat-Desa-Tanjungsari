@@ -13,3 +13,5 @@ Fitur utama dalam sistem ini antara lain:
 </ul>
 
 Dengan adanya sistem ini, saya berharap dapat meningkatkan efisiensi dan kecepatan dalam proses administrasi surat di tingkat pemerintahan desa. Selain itu, warga tidak lagi perlu mengantri untuk membuat surat, karena semuanya sudah terintegrasi dalam sistem. Warga hanya perlu mengambil surat yang sudah diproses melalui sistem yang ada.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/VbdEZMSQXcQ?si=_X8OWIWGzF0OC2lO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
