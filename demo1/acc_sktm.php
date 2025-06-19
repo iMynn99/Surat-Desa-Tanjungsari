@@ -3,31 +3,31 @@
 <script src="js/jquery-2.1.3.min.js"></script>
 <script src="js/sweetalert.min.js"></script>
 <div class="page-inner">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="card">
-				<div class="card-header">
-					<div class="d-flex align-items-center">
-						<h4 class="fw-bold text-uppercase">TAMPIL ACC REQUEST SURAT KETERANGAN TIDAK MAMPU</h4>
-					</div>
-				</div>
-				<div class="card-body">
-					<form method="POST">
-						<div class="table-responsive">
-							<table id="add1" class="display table table-striped table-hover">
-								<thead>
-									<tr>
-										<th>Tanggal Request</th>
-										<th>NIK</th>
-										<th>Nama Lengkap</th>
-										<th>Scan KTP</th>
-										<th>Scan KK</th>
-										<th>Keperluan</th>
-										<th style="width: 10%">Action</th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex align-items-center">
+                        <h4 class="fw-bold text-uppercase">TAMPIL ACC REQUEST SURAT KETERANGAN TIDAK MAMPU</h4>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        <div class="table-responsive">
+                            <table id="add1" class="display table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Tanggal Request</th>
+                                        <th>NIK</th>
+                                        <th>Nama Lengkap</th>
+                                        <th>Scan KTP</th>
+                                        <th>Scan KK</th>
+                                        <th>Keperluan</th>
+                                        <th style="width: 10%">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
 									$i = 1;
 									$sql = "SELECT * FROM data_request_sktm natural join data_user WHERE status=0";
 									$query = mysqli_query($konek, $sql);
@@ -43,39 +43,46 @@
 										$keperluan = $data['keperluan'];
 										$keterangan = $data['keterangan'];
 
-										if ($status == "1") {
+										if ($status == "2") {
 											$status = "<b style='color:blue'>ACC</b>";
 										} elseif ($status == "0") {
 											$status = "<b style='color:red'>BELUM ACC</b>";
 										}
 									?>
-										<tr>
-											<td><?php echo $format; ?></td>
-											<td><?php echo $nik; ?></td>
-											<td><?php echo $nama; ?></td>
-											<td><img src="../dataFoto/scan_ktp/<?php echo $ktp; ?>" width="50" height="50" alt=""></td>
-											<td><img src="../dataFoto/scan_kk/<?php echo $kk; ?>" width="50" height="50" alt=""></td>
-											<td><?php echo $keperluan; ?></td>
-											<td>
-												<a type="button" class="btn btn-success btn-sm" href="?halaman=view_sktm&id_request_sktm=<?= $id_request_sktm; ?>"><i class="fas fa fa-eye"></i> View Surat</a>
-												<div class="form-button-action">
-													<a type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Cek Data" href="?halaman=detail_sktm&id_request_sktm=<?= $id_request_sktm; ?>">
-														<i class="fa fa-edit"></i></a>
-												</div>
-											</td>
-										</tr>
-									<?php
+                                    <tr>
+                                        <td><?php echo $format; ?></td>
+                                        <td><?php echo $nik; ?></td>
+                                        <td><?php echo $nama; ?></td>
+                                        <td><img src="../dataFoto/scan_ktp/<?php echo $ktp; ?>" width="50" height="50"
+                                                alt=""></td>
+                                        <td><img src="../dataFoto/scan_kk/<?php echo $kk; ?>" width="50" height="50"
+                                                alt=""></td>
+                                        <td><?php echo $keperluan; ?></td>
+                                        <td>
+                                            <a type="button" class="btn btn-success btn-sm"
+                                                href="?halaman=view_sktm&id_request_sktm=<?= $id_request_sktm; ?>"><i
+                                                    class="fas fa fa-eye"></i> View Surat</a>
+                                            <div class="form-button-action">
+                                                <a type="button" data-toggle="tooltip" title=""
+                                                    class="btn btn-link btn-primary btn-lg"
+                                                    data-original-title="Cek Data"
+                                                    href="?halaman=detail_sktm&id_request_sktm=<?= $id_request_sktm; ?>">
+                                                    <i class="fa fa-edit"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <?php
 									}
 									?>
-								</tbody>
-							</table>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
-	</div>
+    </div>
 </div>
 
 <?php

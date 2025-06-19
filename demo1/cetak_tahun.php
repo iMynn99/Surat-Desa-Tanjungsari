@@ -3,22 +3,29 @@
 ?>
 <!-- Fonts and icons -->
 <script src="../assets/js/plugin/webfont/webfont.min.js"></script>
-	<script>
-		WebFont.load({
-			google: {"families":["Lato:300,400,700,900"]},
-			custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['../assets/css/fonts.min.css']},
-			active: function() {
-				sessionStorage.fonts = true;
-			}
-		});
-	</script>
+<script>
+WebFont.load({
+    google: {
+        "families": ["Lato:300,400,700,900"]
+    },
+    custom: {
+        "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands",
+            "simple-line-icons"
+        ],
+        urls: ['../assets/css/fonts.min.css']
+    },
+    active: function() {
+        sessionStorage.fonts = true;
+    }
+});
+</script>
 
-	<!-- CSS Files -->
-	<link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-	<link rel="stylesheet" href="../assets/css/atlantis.min.css">
+<!-- CSS Files -->
+<link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="../assets/css/atlantis.min.css">
 
-	<!-- CSS Just for demo purpose, don't include it in your project -->
-	<link rel="stylesheet" href="../assets/css/demo.css">
+<!-- CSS Just for demo purpose, don't include it in your project -->
+<link rel="stylesheet" href="../assets/css/demo.css">
 <?php
 	if(isset($_GET['tahun'])){
         $tahun=$_GET['tahun'];
@@ -100,78 +107,82 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CETAK TAHUN</title>
 </head>
+
 <body>
-<table border="0" align="center">
+    <table border="0" align="center">
         <tr>
-        <td><img src="img/kudus.png" width="70" height="87" alt=""></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+            <td><img src="../main/img/logoku.png" width="70" height="87" alt=""></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
             <td>
                 <center>
                     <font size="4"><b>LAPORAN REQUEST SURAT KETERANGAN</b></font><br>
-                    <font size="4"><b>KELURAHAN WERGU WETAN</b></font><br>
+                    <font size="4"><b>KELURAHAN TANJUNGSARI</b></font><br>
                     <font size="4"><b>TAHUN <?php echo $tahun;?></b></font><br>
                 </center>
             </td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
         <tr>
-            <td colspan="45"><hr color="black"></td>
+            <td colspan="45">
+                <hr color="black">
+            </td>
         </tr>
     </table>
     <br>
     <center>
-<table class="table table-bordered">
-        <tr>
-            <th>No.</th>
-            <th>Tanggal Request</th>
-            <th>Tanggal ACC</th>
-            <th>Nama</th>
-            <th>Keperluan</th>
-            <th>Request</th>
-        </tr>
-        <?php
+        <table class="table table-bordered">
+            <tr>
+                <th>No.</th>
+                <th>Tanggal Request</th>
+                <!-- <th>Tanggal ACC</th> -->
+                <th>Nama</th>
+                <th>Keperluan</th>
+                <th>Request</th>
+            </tr>
+            <?php
             $no=0;
             $query=mysqli_query($konek,$sql);
             while($data=mysqli_fetch_array($query,MYSQLI_BOTH)){
@@ -185,43 +196,44 @@
                 $tglreq = $data['tanggal_request'];
                 $req = date('d F Y',strtotime($tglreq));
         ?>
-        <tbody>
-            <tr>
-                <th><?php echo $no;?></th>
-                <td><?php echo $req;?></td>
-                <td><?php echo $format1;?></td>
-                <!-- <td><?php echo $nik;?></td> -->
-                <td><?php echo $nama;?></td>
-                <td><?php echo $keperluan;?></td>
-                <td><?php echo $request;?></td>
-            </tr>
-        </tbody>
-        <?php
+            <tbody>
+                <tr>
+                    <th><?php echo $no;?></th>
+                    <td><?php echo $req;?></td>
+                    <!-- <td><?php echo $format1;?></td> -->
+                    <!-- <td><?php echo $nik;?></td> -->
+                    <td><?php echo $nama;?></td>
+                    <td><?php echo $keperluan;?></td>
+                    <td><?php echo $request;?></td>
+                </tr>
+            </tbody>
+            <?php
             }
         }
         ?>
-</table>
+        </table>
     </center>
 
 
-<br>
-<br>
-        <table border='0' align="right">
-            <tr>
-                <td style="text-align: center"><b>Kudus, <?php echo date('d F Y');?></b></td>
-            </tr>
-        </table>
-        <br><br><br><br><br>
-        <table border='0' align="right">
-            <tr>
-                <td style="text-align: center"><b>Lurah Wergu Wetan</b></td>
-            </tr>
-            <tr>
-                <td style="text-align: center"><b>Agus Supriyanto</b></td>
-            </tr>
-        </table>
+    <br>
+    <br>
+    <table border='0' align="right">
+        <tr>
+            <td>Tanjungsari, <?= date('d F Y') ?></td>
+        </tr>
+    </table>
+    <br><br><br><br><br>
+    <table border='0' align="right">
+        <tr>
+            <td style="text-align: center"><b>Lurah Tanjungsari</b></td>
+        </tr>
+        <tr>
+            <td style="text-align: center"><b>Pak AHMAD FAUZUN S.Hut </b></td>
+        </tr>
+    </table>
 </body>
+
 </html>
-        <script>
-            window.print();
-        </script>
+<script>
+window.print();
+</script>

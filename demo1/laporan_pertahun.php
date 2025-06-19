@@ -102,76 +102,97 @@ date_default_timezone_set('Asia/Jakarta');
 
 ?>
 
-            <div class="panel-header bg-primary-gradient">
-					<div class="page-inner py-5">
-						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
-							<div>
-								<h2 class="text-white pb-2 fw-bold">LAPORAN PERTAHUN REQUEST SURAT KETERANGAN</h2>
-							</div>
-						</div>
-					</div>
+<div class="panel-header bg-primary-gradient">
+    <div class="page-inner py-5">
+        <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+            <div>
+                <h2 class="text-white pb-2 fw-bold">LAPORAN PERTAHUN REQUEST SURAT KETERANGAN</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-inner mt--5">
+    <div class="row mt--2">
+        <div class="col-md-6">
+            <div class="card full-height">
+                <div class="card-body">
+                    <div class="card-tools">
+                        <form action="" method="POST">
+                            <div class="form-group">
+                                <select name="tahun" class="form-control">
+                                    <option value="">Pilih</option>
+                                    <option value="2012">2012</option>
+                                    <option value="2013">2013</option>
+                                    <option value="2014">2014</option>
+                                    <option value="2015">2015</option>
+                                    <option value="2016">2016</option>
+                                    <option value="2017">2017</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2021">2022</option>
+                                    <option value="2021">2023</option>
+                                    <option value="2021">2024</option>
+                                    <option value="2021">2025</option>
+                                    <option value="2021">2026</option>
+                                    <option value="2021">2027</option>
+                                    <option value="2021">2028</option>
+                                    <option value="2021">2029</option>
+                                    <option value="2021">2030</option>
+                                    <option value="2021">2031</option>
+                                    <option value="2021">2032</option>
+                                    <option value="2021">2033</option>
+                                    <option value="2021">2034</option>
+                                    <option value="2021">2035</option>
+                                    <option value="2021">2036</option>
+                                    <option value="2021">2037</option>
+                                    <option value="2021">2038</option>
+                                    <option value="2021">2039</option>
+                                    <option value="2021">2040</option>
+                                </select>
+                                <div class="form-group">
+                                    <input type="submit" name="tampilkan" value="Tampilkan"
+                                        class="btn btn-primary btn-sm">
+                                    <a href="?halaman=laporan_pertahun">
+                                        <input type="submit" value="Reload" class="btn btn-primary btn-sm">
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="page-inner mt--5">
-					<div class="row mt--2">
-						<div class="col-md-6">
-							<div class="card full-height">
-								<div class="card-body">
-								<div class="card-tools">
-								<form action="" method="POST">
-                                            <div class="form-group">
-                                                <select name="tahun" class="form-control">
-													<option value="">Pilih</option>
-                                                    <option value="2012">2012</option>
-                                                    <option value="2013">2013</option>
-                                                    <option value="2014">2014</option>
-                                                    <option value="2015">2015</option>
-                                                    <option value="2016">2016</option>
-                                                    <option value="2017">2017</option>
-                                                    <option value="2018">2018</option>
-                                                    <option value="2019">2019</option>
-                                                    <option value="2020">2020</option>
-													<option value="2021">2021</option>
-												</select>
-                                                <div class="form-group">
-                                                    <input type="submit" name="tampilkan" value="Tampilkan" class="btn btn-primary btn-sm">
-													<a href="?halaman=laporan_pertahun">
-													<input type="submit" value="Reload" class="btn btn-primary btn-sm">
-													</a>
-                                                </div>
-                                            </div>
-                                        </form>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12">
-							<div class="card">
-								<div class="card-header">
-									<div class="card-tools">
-											<a href="cetak_tahun.php?tahun=<?php echo $tahun;?>" target="_blank" class="btn btn-info btn-border btn-round btn-sm">
-												<span class="btn-label">
-													<i class="fa fa-print"></i>
-												</span>
-												Print
-											</a>
-										</div>
-								</div>
-								<div class="card-body">
-									<table class="table mt-3">
-										<thead>
-											<tr>
-												<th scope="col">No</th>
-												<th scope="col">Tanggal ACC</th>
-												<th scope="col">Nama</th>
-												<th scope="col">Nik</th>
-												<th scope="col">Keperluan</th>
-												<th scope="col">Request</th>
-											</tr>
-										</thead>
-										<tbody>
-											<?php
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-tools">
+                        <a href="cetak_tahun.php?tahun=<?php echo $tahun;?>" target="_blank"
+                            class="btn btn-info btn-border btn-round btn-sm">
+                            <span class="btn-label">
+                                <i class="fa fa-print"></i>
+                            </span>
+                            Print
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table mt-3">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Tanggal ACC</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">Nik</th>
+                                <th scope="col">Keperluan</th>
+                                <th scope="col">Request</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
 												$no=0;
 												while($data=mysqli_fetch_array($query,MYSQLI_BOTH)){
 													$no++;
@@ -182,21 +203,21 @@ date_default_timezone_set('Asia/Jakarta');
 													$keperluan = $data['keperluan'];
 													$request = $data['request'];
 											?>
-											<tr>
-												<td><?php echo $no;?></td>
-												<td><?php echo $tgl;?></td>
-												<td><?php echo $nik;?></td>
-												<td><?php echo $nama;?></td>
-												<td><?php echo $keperluan;?></td>
-												<td><?php echo $request;?></td>
-											</tr>
-											<?php
+                            <tr>
+                                <td><?php echo $no;?></td>
+                                <td><?php echo $tgl;?></td>
+                                <td><?php echo $nik;?></td>
+                                <td><?php echo $nama;?></td>
+                                <td><?php echo $keperluan;?></td>
+                                <td><?php echo $request;?></td>
+                            </tr>
+                            <?php
 												}
 											?>
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
-			</div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

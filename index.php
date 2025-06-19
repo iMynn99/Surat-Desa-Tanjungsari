@@ -1,11 +1,23 @@
 <?php
 session_start();
 include 'konek.php';
+
 $level = "pemohon";
 
-// profil
-$profil = mysqli_fetch_array(mysqli_query($konek, "select * from profil"));
+// Cek koneksi
+if (!$konek) {
+    die("Koneksi ke database gagal: " . mysqli_connect_error());
+}
+
+// Query data profil
+$query_profil = mysqli_query($konek, "SELECT * FROM profil");
+if (!$query_profil) {
+    die("Query profil gagal: " . mysqli_error($konek));
+}
+
+$profil = mysqli_fetch_array($query_profil);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +26,7 @@ $profil = mysqli_fetch_array(mysqli_query($konek, "select * from profil"));
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Pelayanan Surat Keterangan Online Kelurahan Wergu Wetan</title>
+    <title>Pelayanan Surat Keterangan Online Kelurahan Tanjungsari</title>
     <!-- core CSS -->
     <link href="main/css/bootstrap.min.css" rel="stylesheet">
     <link href="main/css/font-awesome.min.css" rel="stylesheet">
@@ -35,18 +47,20 @@ $profil = mysqli_fetch_array(mysqli_query($konek, "select * from profil"));
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Protest+Riot&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Protest+Riot&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
     <style>
-        #cta2 {
-            background: #242a33 url(demo1/img/bg.png) no-repeat 50% 50%;
-            background-size: cover;
-            color: #fff;
-            padding-top: 70px;
-        }
+    #cta2 {
+        background: #242a33 url() no-repeat 50% 50%;
+        background-size: cover;
+        color: #fff;
+        padding-top: 70px;
+    }
 
-        .titleLogo {
-            font-family: monospace;
-        }
+    .titleLogo {
+        font-family: monospace;
+    }
     </style>
 </head>
 <!--/head-->
@@ -63,7 +77,8 @@ $profil = mysqli_fetch_array(mysqli_query($konek, "select * from profil"));
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" style="margin-top: 15px; color:black; font-weight:bold;" href="index.php"><span class="titleLogo">Balai Desa Cinta Rakyat</span></a>
+                    <a class="navbar-brand" style="margin-top: 15px; color:black; font-weight:bold;"
+                        href="index.php"><span class="titleLogo">Balai Desa Tanjungsari</span></a>
                 </div>
 
                 <div class="collapse navbar-collapse navbar-right">
@@ -88,13 +103,15 @@ $profil = mysqli_fetch_array(mysqli_query($konek, "select * from profil"));
         <div class="container" style="min-height: 500px;">
             <div class="text-center">
                 <img src="main/img/logoku2.png" width="125px">
-                <h2 class="wow fadeInUp" style="color: yellow;" data-wow-duration="300ms" data-wow-delay="0ms"><span style="color: yellow;">PELAYANAN</span> SURAT KETERANGAN <br> DESA CINTA RAKYAT</h2>
-                <p class="wow fadeInUp" style="color: red; font-weight:bold;" data-wow-duration="300ms" data-wow-delay="100ms">KLIK LOGIN UNTUK REQUEST PEMBUATAN SURAT KETERANGAN ONLINE</p>
+                <h2 class="wow fadeInUp" style="color: yellow;" data-wow-duration="300ms" data-wow-delay="0ms"><span
+                        style="color: yellow;">PELAYANAN</span> SURAT KETERANGAN <br> DESA TANJUNGSARI</h2>
+                <p class="wow fadeInUp" style="color: red; font-weight:bold;" data-wow-duration="300ms"
+                    data-wow-delay="100ms">KLIK LOGIN UNTUK REQUEST PEMBUATAN SURAT KETERANGAN ONLINE</p>
                 <div class="row justify-content-center">
                     <div class="col-lg-12 text-center">
-                        <div class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="200ms"">
-                           <!-- Button trigger modal -->
-                           <a href=" login.php" type="submit" class="btn btn-md btn-warning">Login</a>
+                        <div class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="200ms">
+                            <!-- Button trigger modal -->
+                            <a href=" login.php" type="submit" class="btn btn-md btn-warning">Login</a>
                             <a href="register.php" type="submit" class="btn btn-md btn-warning">Daftar</a>
                         </div>
                     </div>
@@ -139,40 +156,43 @@ $profil = mysqli_fetch_array(mysqli_query($konek, "select * from profil"));
                     $query = mysqli_query($konek, "select * from pengumuman");
                     while ($data = mysqli_fetch_array($query)) {
                     ?>
-                        <div class="col-md-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">
-                            <div class="media service-box">
-                                <div class="card" style="background-color:#f5f5f5;padding:20px;">
-                                    <img class="card-img-top" src="dataFoto/pengumuman/<?= $data['poto']; ?>" alt="Card image cap" width="50px">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><?= $data['judul']; ?></h5>
-                                        <p class="card-text"><?= substr($data['isi'], 0, 10);; ?></p>
-                                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal<?= $data['id_pengumuman']; ?>">Lihat</a>
-                                    </div>
+                    <div class="col-md-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">
+                        <div class="media service-box">
+                            <div class="card" style="background-color:#f5f5f5;padding:20px;">
+                                <img class="card-img-top" src="dataFoto/pengumuman/<?= $data['poto']; ?>"
+                                    alt="Card image cap" width="50px">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?= $data['judul']; ?></h5>
+                                    <p class="card-text"><?= substr($data['isi'], 0, 10);; ?></p>
+                                    <a href="#" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#exampleModal<?= $data['id_pengumuman']; ?>">Lihat</a>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal<?= $data['id_pengumuman']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Pengumuman</h5>
-                                    </div>
-                                    <div class="modal-body">
-                                        <center>
-                                            <img src="dataFoto/pengumuman/<?= $data['poto']; ?>" width="50%" alt="">
-                                        </center>
-                                        <h4 class="text-center">Judul : <?= $data['judul']; ?></h4>
-                                        <hr>
-                                        <p><?= $data['isi']; ?></p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal<?= $data['id_pengumuman']; ?>" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Pengumuman</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <center>
+                                        <img src="dataFoto/pengumuman/<?= $data['poto']; ?>" width="50%" alt="">
+                                    </center>
+                                    <h4 class="text-center">Judul : <?= $data['judul']; ?></h4>
+                                    <hr>
+                                    <p><?= $data['isi']; ?></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
                         </div>
+                    </div>
                     <?php
                     }
                     ?>
@@ -260,7 +280,8 @@ $profil = mysqli_fetch_array(mysqli_query($konek, "select * from profil"));
                             </div>
                             <div class="media-body">
                                 <h4 class="media-heading">Menginput Data</h4>
-                                <p>Input data pemohon dengan sebelumnya melakukan Login dengan username dan password.</p>
+                                <p>Input data pemohon dengan sebelumnya melakukan Login dengan username dan password.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -273,7 +294,9 @@ $profil = mysqli_fetch_array(mysqli_query($konek, "select * from profil"));
                             </div>
                             <div class="media-body">
                                 <h4 class="media-heading">Mengajukan Surat Permohonan</h4>
-                                <p>Setelah input data pemohon dengan lengkap dan benar, Pemohon memilih Surat yang mau direquest serta melengkapi data request, Kemudian Dikirim dan Menunggu persetujuan dari Staff.</p>
+                                <p>Setelah input data pemohon dengan lengkap dan benar, Pemohon memilih Surat yang mau
+                                    direquest serta melengkapi data request, Kemudian Dikirim dan Menunggu persetujuan
+                                    dari Staff.</p>
                             </div>
                         </div>
                     </div>
@@ -286,7 +309,9 @@ $profil = mysqli_fetch_array(mysqli_query($konek, "select * from profil"));
                             </div>
                             <div class="media-body">
                                 <h4 class="media-heading">Permohonan Disetujui</h4>
-                                <p>Permohonan di setujui oleh Staff, kemudian Staff akan mencetak surat sesuai request surat yang diajukan, pemohon mengambil surat yang sudah dicetak dan bertandatangan di Kantor Balai Desa Cinta Rakyat.</p>
+                                <p>Permohonan di setujui oleh Staff, kemudian Staff akan mencetak surat sesuai request
+                                    surat yang diajukan, pemohon mengambil surat yang sudah dicetak dan bertandatangan
+                                    di Kantor Balai Desa Cinta Rakyat.</p>
                             </div>
                         </div>
                     </div>
@@ -312,7 +337,10 @@ $profil = mysqli_fetch_array(mysqli_query($konek, "select * from profil"));
 
     <section id="contact">
         <div>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3981.5957461211538!2d98.7502281793457!3d3.679083!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3031349930c84221%3A0x78bfd411159db76c!2sKantor%20Lurah%20Desa%20Cinta%20Rakyat!5e0!3m2!1sid!2sid!4v1708174315052!5m2!1sid!2sid" width="100%" height="650px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!4v1749224289329!6m8!1m7!1svHXSPYOd53AgKHRkRS9BJQ!2m2!1d-7.023017829835222!2d109.5996272363993!3f96.34!4f-8.700000000000003!5f0.7820865974627469"
+                width="100%" height="650" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </section>
     <!--/#bottom-->
@@ -321,14 +349,19 @@ $profil = mysqli_fetch_array(mysqli_query($konek, "select * from profil"));
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
-                    &copy; <?php echo date('Y'); ?> KANTOR BALAI DESA CINTA RAKYAT, KECAMATAN PERCUT SEI TUAN, KABUPATEN DELI SERDANG, SUMATERA UTARA
+                    &copy; <?php echo date('Y'); ?> KANTOR BALAI DESA TANJUNGSARI, KECAMATAN KAJEN, KABUPATEN
+                    PEKALONGAN, JAWA TENGAH
                 </div>
                 <div class="col-sm-6">
                     <ul class="social-icons">
-                        <li><a href="https://www.instagram.com/fachrishofiyyuddin/" target="_blank"><i class="fa fa-instagram"></i></a></li>
-                        <li><a href="https://www.facebook.com/profile.php?id=100005519746461" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="https://www.youtube.com/channel/UCzdAstXxirdPWsTcdyl9DQg" target="_blank"><i class="fa fa-youtube"></i></a></li>
-                        <li><a href="https://github.com/fachrishofiyyuddin" target="_blank"><i class="fa fa-github"></i></a></li>
+                        <li><a href="https://www.instagram.com/fachrishofiyyuddin/" target="_blank"><i
+                                    class="fa fa-instagram"></i></a></li>
+                        <li><a href="https://www.facebook.com/profile.php?id=100005519746461" target="_blank"><i
+                                    class="fa fa-facebook"></i></a></li>
+                        <li><a href="https://www.youtube.com/channel/UCzdAstXxirdPWsTcdyl9DQg" target="_blank"><i
+                                    class="fa fa-youtube"></i></a></li>
+                        <li><a href="https://github.com/fachrishofiyyuddin" target="_blank"><i
+                                    class="fa fa-github"></i></a></li>
                     </ul>
                 </div>
             </div>

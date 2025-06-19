@@ -2,8 +2,8 @@
 date_default_timezone_set('Asia/Jakarta');
 $hostname = 'localhost';
 $username = 'root';
-$password = 'root';
+$password = '';
 $database = 'surat';
 
 $konek = mysqli_connect($hostname, $username, $password, $database);
-$url_index = "http://localhost:8888/surat18022024/";
+$url_index = "http://localhost/surat-keterangan-desa";

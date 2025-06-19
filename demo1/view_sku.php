@@ -26,50 +26,49 @@ if (isset($_GET['id_request_sku'])) {
     $status_warga = $data['status_warga'];
     $keperluan = $data['keperluan'];
     $request = $data['request'];
-    $usaha = $data['usaha'];
     $acc = $data['acc'];
-    $no_surat = $data['no_surat'];
-    $no_suratdb = $data['no_surat'];
+    $no_surat = $data['id_request_sku'];
+    $no_suratdb = $data['id_request_sku'];
     if ($no_surat == "") {
         $no_surat = "Belum ada no surat!";
     }
 
-    if ($format4 == "1") {
+    if ($format4 = "1") {
         $romawi = "I";
-    } elseif ($format4 == "2") {
+    } elseif ($format4 = "2") {
         $romawi = "II";
-    } elseif ($format5 == "3") {
+    } elseif ($format5 = "3") {
         $romawi = "III";
-    } elseif ($format5 == "4") {
+    } elseif ($format5 = "4") {
         $romawi = "IV";
-    } elseif ($format5 == "5") {
+    } elseif ($format5 = "5") {
         $romawi = "V";
-    } elseif ($format5 == "6") {
+    } elseif ($format5 = "6") {
         $romawi = "VI";
-    } elseif ($format5 == "7") {
+    } elseif ($format5 = "7") {
         $romawi = "VII";
-    } elseif ($format5 == "8") {
+    } elseif ($format5 = "8") {
         $romawi = "VIII";
-    } elseif ($format5 == "9") {
+    } elseif ($format5 = "9") {
         $romawi = "IX";
-    } elseif ($format5 == "10") {
+    } elseif ($format5 = "10") {
         $romawi = "X";
-    } elseif ($format5 == "11") {
+    } elseif ($format5 = "11") {
         $romawi = "XII";
-    } elseif ($format5 == "12") {
+    } elseif ($format5 = "12") {
         $romawi = "XIII";
-    }
-
-    $format4 = date('d F Y', strtotime($acc));
-    if ($acc == 0) {
-        $acc = "BELUM TTD";
-    } elseif ($acc == 1) {
-        $acc;
     }
 
     // cek kepalada desa /lurah
     $wuery = mysqli_query($konek, "select * from data_user where hak_akses='Lurah'");
     $data_ = mysqli_fetch_array($wuery);
+
+    $format4 = date('d F Y');
+    if ($acc == 0) {
+        $acc = "BELUM TTD";
+    } elseif ($acc == 1) {
+        $acc;
+    }
 }
 ?>
 <div class="panel-header bg-primary-gradient">
@@ -93,7 +92,8 @@ if (isset($_GET['id_request_sku'])) {
                                 <input type="number" name="no_surat" class="form-control" placeholder="No Surat">
                             </div>
                             <div class="form-group">
-                                <input type="submit" name="ttd" value="simpan" class="btn btn-success btn-sm" required="">
+                                <input type="submit" name="ttd" value="simpan" class="btn btn-success btn-sm"
+                                    required="">
                             </div>
                             <div class="form-group">
                                 <input type="submit" name="acc" value="acc" class="btn btn-primary btn-sm">
@@ -111,7 +111,7 @@ if (isset($_GET['id_request_sku'])) {
                                     echo "<script language='javascript'>swal('Selamat...', 'No surat berhasil disimpan', 'success');</script>";
                                     echo '<meta http-equiv="refresh" content="3; url=?halaman=view_sku&id_request_sku=' . $id_ajuan . '">';
                                 } else {
-                                    echo "<script language='javascript'>swal('Gagal...', 'ACC Staff Gagal', 'error');</script>";
+                                    echo "<script language='javascript'>swal('Gagal...', 'ACC Lurah Gagal', 'error');</script>";
                                     echo '<meta http-equiv="refresh" content="3; url=?halaman=view_sku">';
                                 }
                             }
@@ -125,7 +125,7 @@ if (isset($_GET['id_request_sku'])) {
                                 $update2 = mysqli_query($konek, "UPDATE data_request_sku SET status=2, acc='$tgl', keterangan='$ket' WHERE id_request_sku=$id");
                                 if ($update2) {
                                     echo "<script language='javascript'>swal('Selamat...', 'ACC Berhasil', 'success');</script>";
-                                    echo '<meta http-equiv="refresh" content="3; url=?halaman=sudah_acc_sktm">';
+                                    echo '<meta http-equiv="refresh" content="3; url=?halaman=sudah_acc_sku">';
                                 } else {
                                     echo "<script language='javascript'>swal('Gagal...', 'ACC Lurah Gagal', 'error');</script>";
                                     echo '<meta http-equiv="refresh" content="3; url=?halaman=view_sku">';
@@ -141,224 +141,137 @@ if (isset($_GET['id_request_sku'])) {
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-body">
-                    <table border="1" align="center">
-                        <table border="0" align="center">
-                            <tr>
-                                <td><img src="../main/img/logoku2.png" width="70" height="87" alt=""></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <center>
-                                        <font size="4">PEMERINTAHAN KABUPATEN DELI SERDANG</font><br>
-                                        <font size="4">KECAMATAN PECUT SEI TUAN</font><br>
-                                        <font size="5"><b>DESA CINTA RAKYAT</b></font><br>
-                                        <font size="2"><i>JMQH3+J4M, Gg. Laksana, Cinta Rakyat, Kec. Percut Sei Tuan, Kabupaten Deli Serdang, Sumatera Utara 20371</i></font><br>
-                                    </center>
-                                </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td colspan="45">
-                                    <hr color="black">
-                                </td>
-                            </tr>
-                        </table>
-                        <br>
-                        <table border="0" align="center">
-                            <tr>
-                                <td>
-                                    <center>
-                                        <font size="4"><b>SURAT KETERANGAN / PENGANTAR</b></font><br>
-                                        <hr style="margin:0px" color="black">
-                                        <span>Nomor : <?= $no_surat; ?> / <?= $romawi; ?> / <?= $format1; ?></span>
-                                    </center>
-                                </td>
-                            </tr>
-                        </table>
-                        <br>
-                        <br>
-                        <table border="0" align="center">
-                            <tr>
-                                <td>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yang bertanda tangan di bawah ini Kepala Desa Cinta <br> Rakyat, Menerangkan bahwa :
-                                </td>
-                            </tr>
-                        </table>
-                        <br>
-                        <table border="0" align="center">
-                            <tr>
-                                <td>Nama</td>
-                                <td>:</td>
-                                <td><?php echo $nama; ?></td>
-                            </tr>
-                            <tr>
-                                <td>TTL</td>
-                                <td>:</td>
-                                <td><?php echo $tempat . ", " . $format2; ?></td>
-                            </tr>
-                            <tr>
-                                <td>Jenis Kelamin</td>
-                                <td>:</td>
-                                <td><?php echo $jekel; ?></td>
-                            </tr>
-                            <tr>
-                                <td>Agama</td>
-                                <td>:</td>
-                                <td><?php echo $agama; ?></td>
-                            </tr>
-                            <tr>
-                                <td>Status Warga</td>
-                                <td>:</td>
-                                <td><?php echo $status_warga; ?></td>
-                            </tr>
-                            <tr>
-                                <td>No. NIK</td>
-                                <td>:</td>
-                                <td><?php echo $nik; ?></td>
-                            </tr>
-                            <tr>
-                                <td>Alamat</td>
-                                <td>:</td>
-                                <td><?php echo $alamat; ?></td>
-                            </tr>
-                            <tr>
-                                <td>Usaha</td>
-                                <td>:</td>
-                                <td><?php echo $usaha; ?></td>
-                            </tr>
-                            <tr>
-                                <td>Keperluan</td>
-                                <td>:</td>
-                                <td><?php echo $keperluan; ?></td>
-                            </tr>
-                            <tr>
-                                <td>Request</td>
-                                <td>:</td>
-                                <?php
-                                if ($request == "USAHA") {
-                                    $request = "Surat Keterangan Usaha";
-                                }
-                                ?>
-                                <td><?php echo $request; ?></td>
-                            </tr>
-                        </table>
-                        <br>
-                        <table border="0" align="center">
-                            <tr>
-                                <td>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Demikian surat ini diberikan kepada yang bersangkutan agar dapat dipergunakan<br>&nbsp;&nbsp;&nbsp;&nbsp;untuk sebagaimana mestinya.
-                                </td>
-                            </tr>
-                        </table>
-                        <br>
-                        <br>
-                        <table border="0" align="center">
-                            <tr>
-                                <th></th>
-                                <th width="100px"></th>
-                                <th>Deli Serdang, <?php echo $acc; ?></th>
-                            </tr>
-                            <tr>
-                                <td>Tanda tangan <br> Yang bersangkutan </td>
-                                <td></td>
-                                <td>Kepala Desa Cinta Rakyat</td>
-                            </tr>
-                            <tr>
-                                <td rowspan="15"></td>
-                                <td></td>
-                                <td rowspan="15"></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td><b style="text-transform:uppercase"><u>(<?php echo $nama; ?>)</u></b></td>
-                                <td></td>
-                                <td><b><u>(<?= $data_['nama']; ?>)</u></b></td>
-                            </tr>
+                <div class="card-body p-5">
+                    <div class="cetak-surat p-5">
+                        <table border="1" align="center">
+                            <table align="center" width="100%">
+                                <tr>
+                                    <td width="15%" align="center">
+                                        <img src="../main/img/logoku.png" width="70" height="87" alt="">
+                                    </td>
+                                    <td align="center">
+                                        <font size="4">PEMERINTAH KABUPATEN PEKALONGAN</font><br>
+                                        <font size="4">KECAMATAN KAJEN</font><br>
+                                        <font size="5"><b>DESA TANJUNGSARI</b></font><br>
+                                        <font size="2"><i>Alamat : Jl. Daha No. 163 Desa Tanjungsari Kode Pos 511</i>
+                                        </font>
+                                    </td>
+                                    <!-- <td width="15%"></td> -->
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <hr color="black" style="height:2px; border:1px solid black;">
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <br>
+                            <center>
+                                <font size="4"><b><u>SURAT KETERANGAN USAHA</u></b></font><br>
+                                <b>Nomor : <?= $no_surat; ?> / Tanjungsari / <?= $romawi; ?> / <?= $format1; ?></b>
+                            </center>
+                            <br><br>
+
+                            <p style="margin: 0 50px; text-align: justify;">
+                                Yang Bertanda Tangan Di Bawah Ini:<br><br>
+                                Nama
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                                <b><?= $data_['nama']; ?></b><br>
+                                Jabatan &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Kepala
+                                Desa
+                                Tanjungsari<br><br>
+                                Dengan Ini Menerangkan Dengan Sebenarnya :
+                            </p>
+
+                            <table style="margin-left: 70px;" cellspacing="5" cellpadding="2">
+                                <tr>
+                                    <td>1</td>
+                                    <td>Nama</td>
+                                    <td>:</td>
+                                    <td><?= $nama; ?></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Tempat / tgl lahir</td>
+                                    <td>:</td>
+                                    <td><?= $tempat . ", " . $format2; ?></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>NIK</td>
+                                    <td>:</td>
+                                    <td><?= $nik; ?></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Kebangsaan</td>
+                                    <td>:</td>
+                                    <td>Indonesia</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Agama</td>
+                                    <td>:</td>
+                                    <td><?= $agama; ?></td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>Pekerjaan</td>
+                                    <td>:</td>
+                                    <td><?= $status_warga; ?></td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>Alamat</td>
+                                    <td>:</td>
+                                    <td><?= $alamat; ?></td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td>Keperluan</td>
+                                    <td>:</td>
+                                    <td><?= $keperluan; ?></td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td>Keterangan Lain</td>
+                                    <td>:</td>
+                                    <td>
+                                        Benar Adanya Bahwa Orang Tersebut memiliki usaha Toko parfum ” BARKAH PARFUM” di
+                                        Dukuh Desa Tanjungsari<br>
+                                        Kecamatan Kajen Kabupaten Pekalongan Jawa Tengah yang
+                                        sudah
+                                        berjalan kurang lebih 5 tahun
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <br>
+                            <p style="margin: 0 50px; text-align: justify;">
+                                Demikian Surat Keterangan Ini Di Berikan Kepada Yang Bersangkutan, Bahwa Orang Tersebut
+                                Benar-Benar Menjadi
+                                Warga Desa Tanjungsari.
+                            </p>
+
+                            <br><br><br><br><br><br><br><br><br>
+                            <table align="right" style="margin-right: 70px; text-align: center;">
+                                <tr>
+                                    <td>Tanjungsari, <?= $format4; ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Kepala Desa Tanjungsari</td>
+                                </tr>
+                                <tr>
+                                    <td><br><br><br><br></td>
+                                </tr>
+                                <tr>
+                                    <td><b><u>(<?= $data_['nama']; ?>)</u></b></td>
+                                </tr>
+                            </table>
                         </table>
 
-                    </table>
-
+                        <br><br><br><br><br><br><br><br><br><br>
+                    </div>
                 </div>
             </div>
         </div>

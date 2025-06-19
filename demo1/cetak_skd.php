@@ -2,9 +2,10 @@
 <?php
 if (isset($_GET['id_request_skd'])) {
     $id = $_GET['id_request_skd'];
-    $sql = "SELECT * FROM data_request_skd natural join data_user WHERE id_request_skd='$id'";
+    $sql = "SELECT * FROM data_request_skd NATURAL JOIN data_user WHERE id_request_skd='$id'";
     $query = mysqli_query($konek, $sql);
     $data = mysqli_fetch_array($query, MYSQLI_BOTH);
+
     $nik = $data['nik'];
     $nama = $data['nama'];
     $tempat = $data['tempat_lahir'];
@@ -15,276 +16,158 @@ if (isset($_GET['id_request_skd'])) {
     $format3 = date('d F Y', strtotime($tgl2));
     $agama = $data['agama'];
     $jekel = $data['jekel'];
-    $nama = $data['nama'];
     $alamat = $data['alamat'];
     $status_warga = $data['status_warga'];
     $request = $data['request'];
     $keperluan = $data['keperluan'];
     $acc = $data['acc'];
-    $format4 = date('d F Y', strtotime($acc));
-
-    $no_surat = $data['no_surat'];
+    $format4 = date('d F Y');
+    $no_surat = $data['id_request_skd'];
     $format5 = date('m', strtotime($tgl2));
-    if ($format5 == "1") {
-        $romawi = "I";
-    } elseif ($format5 == "2") {
-        $romawi = "II";
-    } elseif ($format5 == "2") {
-        $romawi = "II";
-    } elseif ($format5 == "3") {
-        $romawi = "III";
-    } elseif ($format5 == "4") {
-        $romawi = "IV";
-    } elseif ($format5 == "5") {
-        $romawi = "V";
-    } elseif ($format5 == "6") {
-        $romawi = "VI";
-    } elseif ($format5 == "7") {
-        $romawi = "VII";
-    } elseif ($format5 == "8") {
-        $romawi = "VIII";
-    } elseif ($format5 == "9") {
-        $romawi = "IX";
-    } elseif ($format5 == "10") {
-        $romawi = "X";
-    } elseif ($format5 == "11") {
-        $romawi = "XII";
-    } elseif ($format5 == "12") {
-        $romawi = "XIII";
-    }
 
-    // cek kepalada desa /lurah
-    $wuery = mysqli_query($konek, "select * from data_user where hak_akses='Lurah'");
+    // Bulan romawi
+    $romawi_bulan = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"];
+    $romawi = $romawi_bulan[(int)$format5 - 1];
+
+    // Kepala Desa
+    $wuery = mysqli_query($konek, "SELECT * FROM data_user WHERE hak_akses='Lurah'");
     $data_ = mysqli_fetch_array($wuery);
 }
-
 ?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CETAK SKD</title>
+    <title>Surat Keterangan Domisili</title>
 </head>
 
-<body>
+<body style="font-family: 'Times New Roman', Times, serif;">
 
-    <table border="0" align="center">
+    <table align="center" width="100%">
         <tr>
-            <td><img src="../main/img/logoku2.png" width="70" height="87" alt=""></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>
-                <center>
-                    <font size="4">PEMERINTAHAN KABUPATEN DELI SERDANG</font><br>
-                    <font size="4">KECAMATAN PECUT SEI TUAN</font><br>
-                    <font size="5"><b>DESA CINTA RAKYAT</b></font><br>
-                    <font size="2"><i>MQH3+J4M, Gg. Laksana, Cinta Rakyat, Kec. Percut Sei Tuan, Kabupaten Deli Serdang, Sumatera Utara 20371</i></font><br>
-                </center>
+            <td width="15%" align="center">
+                <img src="../main/img/logoku.png" width="70" height="87" alt="">
             </td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td align="center">
+                <font size="4">PEMERINTAH KABUPATEN PEKALONGAN</font><br>
+                <font size="4">KECAMATAN KAJEN</font><br>
+                <font size="5"><b>DESA TANJUNGSARI</b></font><br>
+                <font size="2"><i>Alamat : Jl. Daha No. 163 Desa Tanjungsari Kode Pos 511</i></font>
+            </td>
         </tr>
         <tr>
-            <td colspan="45">
-                <hr color="black">
+            <td colspan="2">
+                <hr color="black" style="height:2px; border:1px solid black;">
             </td>
         </tr>
     </table>
+
     <br>
-    <table border="0" align="center">
+    <center>
+        <font size="4"><b><u>SURAT KETERANGAN DOMISILI</u></b></font><br>
+        <b>Nomor : <?= $no_surat; ?> / DS / <?= $romawi; ?> / <?= $format1; ?></b>
+    </center>
+    <br><br>
+
+    <p style="margin: 0 50px; text-align: justify;">
+        Yang Bertanda Tangan Di Bawah Ini:<br><br>
+        Nama &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+        <b><?= $data_['nama']; ?></b><br>
+        Jabatan &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Kepala Desa
+        Tanjungsari<br><br>
+        Dengan Ini Menerangkan Dengan Sebenarnya :
+    </p>
+
+    <table style="margin-left: 70px;" cellspacing="5" cellpadding="2">
         <tr>
-            <td>
-                <center>
-                    <font size="4"><b>SURAT KETERANGAN / PENGANTAR</b></font><br>
-                    <hr style="margin:0px" color="black">
-                    <span>Nomor : <?= $no_surat; ?> / <?= $romawi; ?> / <?= $format1; ?></span>
-                </center>
-            </td>
-        </tr>
-    </table>
-    <br>
-    <br>
-    <table border="0" align="center">
-        <tr>
-            <td>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yang bertanda tangan di bawah ini Kepala Desa Cinta <br> Rakyat, Menerangkan bahwa :
-            </td>
-        </tr>
-    </table>
-    <br>
-    <table border="0" align="center">
-        <tr>
+            <td>1</td>
             <td>Nama</td>
             <td>:</td>
-            <td><?php echo $nama; ?></td>
+            <td><?= $nama; ?></td>
         </tr>
         <tr>
-            <td>TTL</td>
+            <td>2</td>
+            <td>Tempat / tgl lahir</td>
             <td>:</td>
-            <td><?php echo $tempat . ", " . $format2; ?></td>
+            <td><?= $tempat . ", " . $format2; ?></td>
         </tr>
         <tr>
-            <td>Jenis Kelamin</td>
+            <td>3</td>
+            <td>NIK</td>
             <td>:</td>
-            <td><?php echo $jekel; ?></td>
+            <td><?= $nik; ?></td>
         </tr>
         <tr>
+            <td>4</td>
+            <td>Kebangsaan</td>
+            <td>:</td>
+            <td>Indonesia</td>
+        </tr>
+        <tr>
+            <td>5</td>
             <td>Agama</td>
             <td>:</td>
-            <td><?php echo $agama; ?></td>
+            <td><?= $agama; ?></td>
         </tr>
         <tr>
-            <td>Status Warga</td>
+            <td>6</td>
+            <td>Pekerjaan</td>
             <td>:</td>
-            <td><?php echo $status_warga; ?></td>
+            <td><?= $status_warga; ?></td>
         </tr>
         <tr>
-            <td>No. NIK</td>
-            <td>:</td>
-            <td><?php echo $nik; ?></td>
-        </tr>
-        <tr>
+            <td>7</td>
             <td>Alamat</td>
             <td>:</td>
-            <td><?php echo $alamat; ?></td>
+            <td><?= $alamat; ?></td>
         </tr>
         <tr>
+            <td>8</td>
             <td>Keperluan</td>
             <td>:</td>
-            <td><?php echo $keperluan; ?></td>
+            <td><?= $keperluan; ?></td>
         </tr>
         <tr>
-            <td>Keterangan</td>
+            <td>9</td>
+            <td>Keterangan Lain</td>
             <td>:</td>
-            <?php
-            if ($request == "DOMISILI") {
-                $request = "Surat Keterangan Domisili";
-            }
-            ?>
-            <td><?php echo $request; ?></td>
-        </tr>
-    </table>
-    <br>
-    <table border="0" align="center">
-        <tr>
             <td>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Demikian surat ini diberikan kepada yang bersangkutan agar dapat dipergunakan<br>&nbsp;&nbsp;&nbsp;&nbsp;untuk sebagaimana mestinya.
+                Bahwa orang tersebut benar-benar sudah menetap dan<br>
+                berdomisili di Perum GPI Blok A2 no6 RT04 / RW04 Desa<br>
+                Tanjungsari, Kec. Kajen Kab. Pekalongan
             </td>
         </tr>
     </table>
+
     <br>
-    <br>
-    <table border="0" align="center">
+    <p style="margin: 0 50px; text-align: justify;">
+        Demikian Surat Keterangan Ini Di Berikan Kepada Yang Bersangkutan, Bahwa Orang Tersebut Benar-Benar Menjadi
+        Warga Desa Tanjungsari.
+    </p>
+
+    <br><br>
+    <table align="right" style="margin-right: 70px; text-align: center;">
         <tr>
-            <th></th>
-            <th width="100px"></th>
-            <th>Deli Serdang, <?php echo $format4; ?></th>
+            <td>Tanjungsari, <?= $format4; ?></td>
         </tr>
         <tr>
-            <td>Tanda tangan <br> Yang bersangkutan </td>
-            <td></td>
-            <td>Kepala Desa Cinta Rakyat</td>
+            <td>Kepala Desa Tanjungsari</td>
         </tr>
         <tr>
-            <td rowspan="15"></td>
-            <td></td>
-            <td rowspan="15"></td>
+            <td><br><br><br><br></td>
         </tr>
         <tr>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-        </tr>
-        <tr>
-            <td><b style="text-transform:uppercase"><u>(<?php echo $nama; ?>)</u></b></td>
-            <td></td>
             <td><b><u>(<?= $data_['nama']; ?>)</u></b></td>
         </tr>
     </table>
 
-
-
-
+    <br><br><br><br>
 </body>
 
 </html>
+
 <script>
-    window.print();
+window.print();
 </script>
