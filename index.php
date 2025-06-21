@@ -159,8 +159,8 @@ $profil = mysqli_fetch_array($query_profil);
                     <div class="col-md-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">
                         <div class="media service-box">
                             <div class="card" style="background-color:#f5f5f5;padding:20px;">
-                                <img class="card-img-top" src="dataFoto/pengumuman/<?= $data['poto']; ?>"
-                                    alt="Card image cap" width="50px">
+                                <img class="card-img-top" src="dataFoto/pengumuman/<?= $data['foto']; ?>"
+                                    alt="Card image cap" width="510px" height="300px">
                                 <div class="card-body">
                                     <h5 class="card-title"><?= $data['judul']; ?></h5>
                                     <p class="card-text"><?= substr($data['isi'], 0, 10);; ?></p>

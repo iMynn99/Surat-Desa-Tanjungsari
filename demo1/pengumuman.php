@@ -23,7 +23,7 @@
                                             <th>No.</th>
                                             <th>Judul</th>
                                             <th>Isi</th>
-                                            <th>Poto</th>
+                                            <th>Foto</th>
                                             <th style="width: 10%">Action</th>
                                         </tr>
                                     </thead>
@@ -35,24 +35,29 @@
                                         while ($data = mysqli_fetch_array($query, MYSQLI_BOTH)) {
                                             $judul = $data['judul'];
                                             $isi = $data['isi'];
-                                            $poto = $data['poto'];
+                                            $foto = $data['foto'];
                                         ?>
-                                            <tr>
-                                                <td><?php echo $no++; ?></td>
-                                                <td><?php echo $judul; ?></td>
-                                                <td><?php echo $isi; ?></td>
-                                                <td><img src="../dataFoto/pengumuman/<?= $poto; ?>" width="100px" alt=""></td>
-                                                <td>
-                                                    <div class="form-button-action">
-                                                        <a href="?halaman=editpengumuman&id=<?= $data['id_pengumuman']; ?>" type="button" class="btn btn-link btn-primary btn-lg" data-original-title="Edit User">
-                                                            <i class="fa fa-edit"></i>
-                                                        </a>
-                                                        <a href="?halaman=pengumuma&id=<?= $data['id_pengumuman']; ?>" type="button" class="btn btn-link btn-primary btn-lg" data-original-title="hapus">
-                                                            <i class="fa fa-times"></i>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                        <tr>
+                                            <td><?php echo $no++; ?></td>
+                                            <td><?php echo $judul; ?></td>
+                                            <td><?php echo $isi; ?></td>
+                                            <td><img src="../dataFoto/pengumuman/<?= $foto; ?>" width="100px" alt="">
+                                            </td>
+                                            <td>
+                                                <div class="form-button-action">
+                                                    <a href="?halaman=editpengumuman&id=<?= $data['id_pengumuman']; ?>"
+                                                        type="button" class="btn btn-link btn-primary btn-lg"
+                                                        data-original-title="Edit User">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                    <a href="?halaman=pengumuman&id=<?= $data['id_pengumuman']; ?>"
+                                                        type="button" class="btn btn-link btn-primary btn-lg"
+                                                        data-original-title="hapus">
+                                                        <i class="fa fa-times"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
                                         <?php
                                         }
                                         ?>

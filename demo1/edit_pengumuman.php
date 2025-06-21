@@ -27,14 +27,15 @@ if (isset($_GET['id'])) {
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Isi</label>
-                                    <textarea name="isi" id="" cols="30" rows="10" class="form-control"><?= $data['isi']; ?></textarea>
+                                    <textarea name="isi" id="" cols="30" rows="10"
+                                        class="form-control"><?= $data['isi']; ?></textarea>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Photo</label>
                                     <input type="hidden" name="id" value="<?= $data['id_pengumuman']; ?>">
-                                    <input type="file" name="poto" class="form-control" required="">
+                                    <input type="file" name="foto" class="form-control" required="">
                                 </div>
                             </div>
                         </div>
@@ -53,13 +54,13 @@ if (isset($_POST['simpan'])) {
     $judul = htmlspecialchars($_POST['judul']);
     $isi = htmlspecialchars($_POST['isi']);
     $id = $_POST['id'];
-    $poto = isset($_FILES['poto']);
-    $filepoto = rand() . ".jpg";
-    $sql = "UPDATE pengumuman set isi='$isi', poto='$filepoto', judul='$judul' where id_pengumuman='$id'";
+    $foto = isset($_FILES['foto']);
+    $filefoto = rand() . ".jpg";
+    $sql = "UPDATE pengumuman set isi='$isi', foto='$filefoto', judul='$judul' where id_pengumuman='$id'";
     $query = mysqli_query($konek, $sql);
 
     if ($query) {
-        copy($_FILES['poto']['tmp_name'], "../dataFoto/pengumuman/" . $filepoto);
+        copy($_FILES['foto']['tmp_name'], "../dataFoto/pengumuman/" . $filefoto);
         echo "<script language='javascript'>swal('Selamat...', 'Simpan Berhasil', 'success');</script>";
         echo '<meta http-equiv="refresh" content="3; url=?halaman=pengumuman">';
     } else {

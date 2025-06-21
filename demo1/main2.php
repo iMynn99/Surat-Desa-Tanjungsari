@@ -178,6 +178,15 @@ if (isset($_SESSION['password']) == "" || ($_SESSION['hak_akses']) == "") {
 				case 'detail_skd';
 					include 'detail_skd.php';
 					break;
+				case 'detail_skbm';
+					include 'detail_skbm.php';
+					break;
+				case 'detail_skmak';
+					include 'detail_skmak.php';
+					break;
+				case 'detail_skk';
+					include 'detail_skk.php';
+					break;
 				case 'cetak_sktm';
 					include 'cetak_sktm.php';
 					break;

@@ -368,6 +368,108 @@ if ($hak_akses == "Staf") {
                 </div>
             </div>
         </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="card card-stats card-round">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <a href="?halaman=belum_acc_skbm">
+                            <div class="col-icon">
+                                <div class="icon-big text-center icon-secondary bubble-shadow-small">
+                                    <i class="flaticon-envelope-1"></i>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="col col-stats ml-3 ml-sm-0">
+                            <div class="numbers">
+                                <p class="card-category">SKBM</p>
+                                <?php
+									$sql = "SELECT * FROM data_request_skbm WHERE status=0";
+									$query = mysqli_query($konek, $sql);
+									$data = mysqli_fetch_array($query, MYSQLI_BOTH);
+									$count = mysqli_num_rows($query);
+									$status = $data['status'];
+
+									if ($status == "1") {
+										$count = "Belum ada request";
+									}
+
+
+									?>
+                                <h4 class="card-title"><?php echo $count; ?></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="card card-stats card-round">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <a href="?halaman=belum_acc_skmak">
+                            <div class="col-icon">
+                                <div class="icon-big text-center icon-secondary bubble-shadow-small">
+                                    <i class="flaticon-envelope-1"></i>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="col col-stats ml-3 ml-sm-0">
+                            <div class="numbers">
+                                <p class="card-category">SKMAK</p>
+                                <?php
+									$sql = "SELECT * FROM data_request_skmak WHERE status=0";
+									$query = mysqli_query($konek, $sql);
+									$data = mysqli_fetch_array($query, MYSQLI_BOTH);
+									$count = mysqli_num_rows($query);
+									$status = $data['status'];
+
+									if ($status == "1") {
+										$count = "Belum ada request";
+									}
+
+
+									?>
+                                <h4 class="card-title"><?php echo $count; ?></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="card card-stats card-round">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <a href="?halaman=belum_acc_skk">
+                            <div class="col-icon">
+                                <div class="icon-big text-center icon-secondary bubble-shadow-small">
+                                    <i class="flaticon-envelope-1"></i>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="col col-stats ml-3 ml-sm-0">
+                            <div class="numbers">
+                                <p class="card-category">SKK</p>
+                                <?php
+									$sql = "SELECT * FROM data_request_skk WHERE status=0";
+									$query = mysqli_query($konek, $sql);
+									$data = mysqli_fetch_array($query, MYSQLI_BOTH);
+									$count = mysqli_num_rows($query);
+									$status = $data['status'];
+
+									if ($status == "1") {
+										$count = "Belum ada request";
+									}
+
+
+									?>
+                                <h4 class="card-title"><?php echo $count; ?></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <?php

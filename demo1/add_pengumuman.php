@@ -27,7 +27,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Photo</label>
-                                    <input type="file" name="poto" class="form-control" required="">
+                                    <input type="file" name="foto" class="form-control" required="">
                                 </div>
                             </div>
                         </div>
@@ -42,20 +42,45 @@
 </div>
 
 <?php
+
 if (isset($_POST['simpan'])) {
     $judul = htmlspecialchars($_POST['judul']);
     $isi = htmlspecialchars($_POST['isi']);
-    $poto = isset($_FILES['poto']);
-    $filepoto = rand() . ".jpg";
-    $sql = "insert into pengumuman (judul,isi,poto) values ('$judul','$isi','$filepoto')";
-    $query = mysqli_query($konek, $sql);
 
-    if ($query) {
-        copy($_FILES['poto']['tmp_name'], "../dataFoto/pengumuman/" . $filepoto);
-        echo "<script language='javascript'>swal('Selamat...', 'Simpan Berhasil', 'success');</script>";
-        echo '<meta http-equiv="refresh" content="3; url=?halaman=pengumuman">';
+    if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
+        $nama_file_asli = $_FILES['foto']['name'];
+        $tmp_name = $_FILES['foto']['tmp_name'];
+        $ekstensi_file = pathinfo($nama_file_asli, PATHINFO_EXTENSION);
+        $filefoto = uniqid() . '.' . $ekstensi_file;
+        $folder_tujuan = "../dataFoto/pengumuman/";
+        $path_lengkap_file = $folder_tujuan . $filefoto;
+
+        if (move_uploaded_file($tmp_name, $path_lengkap_file)) {
+            $sql = "INSERT INTO pengumuman (judul, isi, foto) VALUES (?, ?, ?)";
+            $stmt = mysqli_prepare($konek, $sql);
+
+            if ($stmt) {
+                mysqli_stmt_bind_param($stmt, "sss", $judul, $isi, $filefoto);
+                $query = mysqli_stmt_execute($stmt);
+
+                if ($query) {
+                    echo "<script language='javascript'>swal('Selamat...', 'Simpan Berhasil', 'success');</script>";
+                    echo '<meta http-equiv="refresh" content="3; url=?halaman=pengumuman">';
+                } else {
+                    echo "<script language='javascript'>swal('Gagal...', 'Simpan Gagal ke Database', 'error');</script>";
+                    echo '<meta http-equiv="refresh" content="3; url=?halaman=pengumuman">';
+                }
+                mysqli_stmt_close($stmt);
+            } else {
+                echo "<script language='javascript'>swal('Gagal...', 'Persiapan Statement Gagal', 'error');</script>";
+                echo '<meta http-equiv="refresh" content="3; url=?halaman=pengumuman">';
+            }
+        } else {
+            echo "<script language='javascript'>swal('Gagal...', 'Gagal Mengunggah File Foto', 'error');</script>";
+            echo '<meta http-equiv="refresh" content="3; url=?halaman=pengumuman">';
+        }
     } else {
-        echo "<script language='javascript'>swal('Gagal...', 'Simpan Gagal', 'error');</script>";
+        echo "<script language='javascript'>swal('Peringatan...', 'Tidak Ada File Foto yang Diunggah atau Ada Error', 'warning');</script>";
         echo '<meta http-equiv="refresh" content="3; url=?halaman=pengumuman">';
     }
 }
